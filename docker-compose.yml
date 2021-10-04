@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  eaglerockhub:
+    image: ${DOCKER_REGISTRY-}eaglerockhub
+    build:
+      context: .
+      dockerfile: EagleRockHub/Dockerfile
+    depends_on: 
+              - "redis_container"
+    links: 
+              - "redis_container"
+  redis_container:
+     image: redis
+     container_name: redis-container
+     ports:
+      - "6379:6379"
