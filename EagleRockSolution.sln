@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EagleRockHub", "EagleRockHub\EagleRockHub.csproj", "{D5C48B08-4858-41BA-999C-1BFD20D5F536}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EagleRockHub.UniTests", "EagleRockHub.UniTests\EagleRockHub.UniTests.csproj", "{6D4C6666-AF0B-4B2F-9DCC-DE5B6414F94D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D5C48B08-4858-41BA-999C-1BFD20D5F536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5C48B08-4858-41BA-999C-1BFD20D5F536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5C48B08-4858-41BA-999C-1BFD20D5F536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D4C6666-AF0B-4B2F-9DCC-DE5B6414F94D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4C6666-AF0B-4B2F-9DCC-DE5B6414F94D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D4C6666-AF0B-4B2F-9DCC-DE5B6414F94D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D4C6666-AF0B-4B2F-9DCC-DE5B6414F94D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

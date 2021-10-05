@@ -46,7 +46,7 @@ namespace EagleRockHub.Controllers
             {
                 if (response.HasExceptions)
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError);
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
                 }
 
                 return BadRequest(response);
