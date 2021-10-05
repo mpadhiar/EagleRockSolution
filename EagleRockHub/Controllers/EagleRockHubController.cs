@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace EagleRockHub.Controllers
@@ -25,7 +26,7 @@ namespace EagleRockHub.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(ApiDataResponse<List<TrafficStatisticsDto>>), 200)]
+        [ProducesResponseType(typeof(ApiDataResponse<List<TrafficStatisticsDto>>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllTrafficStatsAsync()
         {
             var stats = await _eagleHubService.GetAllTrafficStatsAsync();
@@ -34,9 +35,9 @@ namespace EagleRockHub.Controllers
 
         [HttpPost]
         [ValidateParam]
-        [ProducesResponseType(typeof(ApiResponse), 200)]
-        [ProducesResponseType(typeof(ApiResponse), 400)]
-        [ProducesResponseType(typeof(ApiResponse), 500)]
+        [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> AddTrafficStatsAsync(TrafficStatisticsDto trafficStatisticsDto)
         {
             var response = await _eagleHubService.AddTrafficStatsAsync(trafficStatisticsDto);
