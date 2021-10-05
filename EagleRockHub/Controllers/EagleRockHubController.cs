@@ -1,10 +1,12 @@
-﻿using EagleRockHub.Entities;
+﻿using EagleRockHub.Attributes;
+using EagleRockHub.Dtos;
+using EagleRockHub.Entities;
 using EagleRockHub.Interfaces;
+using EagleRockHub.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EagleRockHub.Controllers
@@ -14,28 +16,42 @@ namespace EagleRockHub.Controllers
     public class EagleRockHubController : ControllerBase
     {
         private readonly ILogger<EagleRockHubController> _logger;
-        private readonly IEagleHubRepository _eagleHubRepository;
+        private readonly IEagleHubService _eagleHubService;
 
-        public EagleRockHubController(ILogger<EagleRockHubController> logger, IEagleHubRepository eagleHubRepository)
+        public EagleRockHubController(ILogger<EagleRockHubController> logger, IEagleHubService eagleHubService)
         {
             _logger = logger;
-            _eagleHubRepository = eagleHubRepository;
+            _eagleHubService = eagleHubService;
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<TrafficStatistics>), 200)]
-        public async Task<IActionResult> TrafficStatsAsync()
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        public async Task<IActionResult> GetAllTrafficStatsAsync()
         {
-            var stats = await _eagleHubRepository.GetTrafficStatistics();
+            var stats = await _eagleHubService.();
             return Ok(stats);
         }
 
         [HttpPost]
-        [ProducesResponseType(200)]
-        public async Task<IActionResult> TrafficStatsAsync(TrafficStatistics trafficStatistics)
+        [ValidateParam]
+        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiResponse), 400)]
+        [ProducesResponseType(typeof(ApiResponse), 500)]
+        public async Task<IActionResult> AddTrafficStatsAsync(TrafficStatisticsDto trafficStatisticsDto)
         {
-            await _eagleHubRepository.AddTrafficStatistics(trafficStatistics);
-            return Ok();
+            var response = await _eagleHubService.AddTrafficStatistics(trafficStatisticsDto);
+
+            if(!response.Success)
+            {
+                if (response.HasExceptions)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+
+                return BadRequest(response);
+            }
+
+            return Ok(response);
         }
     }
 }

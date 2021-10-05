@@ -24,8 +24,8 @@ namespace EagleRockHub.Repositories
 
         public async Task<List<TrafficStatistics>> GetTrafficStatistics()
         {
-             var stats = await _cacheProviderService.GetFromCache<List<TrafficStatistics>>(CacheKeys.TrafficStatisticsKey);
-            return stats;
+            var trafficStatistics = await _cacheProviderService.GetFromCache<List<TrafficStatistics>>(CacheKeys.TrafficStatisticsKey);
+            return trafficStatistics;
         }
     }
 }
