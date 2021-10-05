@@ -17,12 +17,12 @@ namespace EagleRockHub.Repositories
             _cacheProviderService = cacheProviderService;
         }
 
-        public async Task AddTrafficStatistics(TrafficStatistics _trafficStatics)
+        public async Task AddTrafficStatisticsAsync(TrafficStatistics _trafficStatics)
         {
             await _cacheProviderService.AddItem(CacheKeys.TrafficStatisticsKey, _trafficStatics);
         }
 
-        public async Task<List<TrafficStatistics>> GetTrafficStatistics()
+        public async Task<List<TrafficStatistics>> GetTrafficStatisticsAsync()
         {
             var trafficStatistics = await _cacheProviderService.GetFromCache<List<TrafficStatistics>>(CacheKeys.TrafficStatisticsKey);
             return trafficStatistics;

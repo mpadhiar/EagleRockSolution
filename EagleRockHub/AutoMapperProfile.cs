@@ -13,6 +13,8 @@ namespace EagleRockHub
         public AutoMapperProfile()
         {
             CreateMap<TrafficStatisticsDto, TrafficStatistics>();
+
+            CreateMap<TrafficStatistics, TrafficStatisticsDto>();
         }
     }
 }

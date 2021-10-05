@@ -8,7 +8,7 @@ namespace EagleRockHub.Interfaces
 {
     public interface IEagleHubRepository
     {
-        Task AddTrafficStatistics(TrafficStatistics _trafficStatics);
-        Task<List<TrafficStatistics>> GetTrafficStatistics();
+        Task AddTrafficStatisticsAsync(TrafficStatistics _trafficStatics);
+        Task<List<TrafficStatistics>> GetTrafficStatisticsAsync();
     }
 }

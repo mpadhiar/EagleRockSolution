@@ -21,11 +21,6 @@ namespace EagleRockHub.Services
 
         public async Task<T> GetFromCache<T>(string key) where T : class
         {
-            if(string.IsNullOrEmpty(key))
-            {
-                throw new ArgumentNullException(nameof(key), "A valid key is required to get data from cache. The key cannot be null or empty");
-            }
-
             var cachedResponse = await _cache.GetStringAsync(key);
             return cachedResponse == null ? null : JsonConvert.DeserializeObject<T>(cachedResponse);
         }

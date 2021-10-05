@@ -9,6 +9,7 @@ namespace EagleRockHub.Interfaces
 {
     public interface IEagleHubService
     {
-        Task<ApiResponse> AddTrafficStatistics(TrafficStatisticsDto trafficStatisticDto);
+        Task<ApiDataResponse<List<TrafficStatisticsDto>>> GetAllTrafficStatsAsync();
+        Task<ApiResponse> AddTrafficStatsAsync(TrafficStatisticsDto trafficStatisticDto);
     }
 }

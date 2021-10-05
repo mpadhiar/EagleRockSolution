@@ -26,11 +26,11 @@ namespace EagleRockHub.Services
             _mapper = mapper;
         }
 
-        public async Task<ApiDataResponse<List<TrafficStatisticsDto>>> GetAllTrafficStatistics()
+        public async Task<ApiDataResponse<List<TrafficStatisticsDto>>> GetAllTrafficStatsAsync()
         {
             var apiResponse = new ApiDataResponse<List<TrafficStatisticsDto>>();
 
-            var trafficStats = _eagleHubRepository.GetTrafficStatistics();
+            var trafficStats = await _eagleHubRepository.GetTrafficStatisticsAsync();
 
             //if we dont have any stats in cache we return an empty list
             if(trafficStats == null)
@@ -39,10 +39,10 @@ namespace EagleRockHub.Services
                 return apiResponse;
             }
 
-
+            apiResponse.Data = _mapper.Map<List<TrafficStatisticsDto>>(trafficStats);
+            return apiResponse;
         }
-
-        public async Task<ApiResponse> AddTrafficStatistics(TrafficStatisticsDto trafficStatisticDto)
+       public async Task<ApiResponse> AddTrafficStatsAsync(TrafficStatisticsDto trafficStatisticDto)
         {
             var apiResponse = new ApiResponse();
       
@@ -57,7 +57,7 @@ namespace EagleRockHub.Services
             try
             {
                 var entity = _mapper.Map<TrafficStatistics>(trafficStatisticDto);
-                await _eagleHubRepository.AddTrafficStatistics(entity);
+                await _eagleHubRepository.AddTrafficStatisticsAsync(entity);
             }
             catch(Exception ex)
             {

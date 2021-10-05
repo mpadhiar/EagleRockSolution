@@ -25,10 +25,10 @@ namespace EagleRockHub.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(ApiResponse), 200)]
+        [ProducesResponseType(typeof(ApiDataResponse<List<TrafficStatisticsDto>>), 200)]
         public async Task<IActionResult> GetAllTrafficStatsAsync()
         {
-            var stats = await _eagleHubService.();
+            var stats = await _eagleHubService.GetAllTrafficStatsAsync();
             return Ok(stats);
         }
 
@@ -39,7 +39,7 @@ namespace EagleRockHub.Controllers
         [ProducesResponseType(typeof(ApiResponse), 500)]
         public async Task<IActionResult> AddTrafficStatsAsync(TrafficStatisticsDto trafficStatisticsDto)
         {
-            var response = await _eagleHubService.AddTrafficStatistics(trafficStatisticsDto);
+            var response = await _eagleHubService.AddTrafficStatsAsync(trafficStatisticsDto);
 
             if(!response.Success)
             {
