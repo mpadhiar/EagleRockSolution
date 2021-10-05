@@ -14,6 +14,8 @@ The api project requires api key authentication. The authentication api key is i
 before starting the solution we need to run the following commands in terminal to pull redis image and start redis in a container:
 
 docker pull redis
+
+
 docker run --name some-redis -d redis redis-server
 
 We can now run the api solution and it should be able to communicate to redi server. Ideally we should be using a docker compose file to run our multi container app.
