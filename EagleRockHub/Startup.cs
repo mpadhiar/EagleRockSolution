@@ -57,7 +57,7 @@ namespace EagleRockHub
 
             app.UseAuthorization();
 
-            //app.UseMiddleware<ApiKeyMiddleware>();
+            app.UseMiddleware<ApiKeyMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

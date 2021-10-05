@@ -43,10 +43,5 @@ namespace EagleRockHub.Services
             cacheItems.Add(value);
             await SetCache(key, cacheItems, CacheEntryOptions);
         }
-
-        public async Task ClearCache(string key)
-        {
-            await _cache.RemoveAsync(key);
-        }
     }
 }
